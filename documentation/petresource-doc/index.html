@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="http://openrz.org/documentation/petresource-doc/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>PetResoure Documentation - OpenRZ</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "PetResoure Documentation";
+    var mkdocs_page_input_path = "documentation\\petresource-doc.md";
+    var mkdocs_page_url = "/documentation/petresource-doc/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> OpenRZ</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/">Guides</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../releases/">Releases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="https://discord.gg/6rxB56w5x5">Discord</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../credits_thanks/">Credits/Thanks</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">OpenRZ</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>PetResoure Documentation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="petresource-documentation">PetResource Documentation</h1>
+<hr />
+<h2 id="cage_id">cage_id</h2>
+<p>The <code>dbo.ItemResource</code> id of the item used to summon the <code>Pet</code></p>
+<p><strong>Notes</strong></p>
+<ul>
+<li><strong>The cage item must present <code>status_flag</code> <code>32</code></strong></li>
+<li><strong>The cage item must present <code>opt_type_0</code> <code>90</code></strong></li>
+</ul>
+<h2 id="type">type</h2>
+<p>The <code>type</code> field is enumerated below:</p>
+<pre><code class="language-cpp">CREATURE_ETC            = 0;    
+CREATURE_BEAST          = 1;    
+CREATURE_SEMIHUMAN      = 2;    
+CREATURE_ELEMENTAL      = 3;    
+CREATURE_ANGEL          = 4;    
+CREATURE_DEVIL          = 5;    
+CREATURE_MECHA          = 6;    
+CREATURE_DRAGON         = 7;    
+CREATURE_UNDEAD         = 8;    
+CREATURE_HUMAN          = 9;    
+CREATURE_ALL            = 99;   
+</code></pre>
+<h2 id="rateattribute_flag">rate/attribute_Flag</h2>
+<p>A <code>bit_flag</code> field used determine some behaviors of the pet.</p>
+<p><strong>Note: in ep7.2 the field is named <code>rate</code> in of ep9+ the field is named <code>attribute_flag</code></strong></p>
+<pre><code class="language-cpp">RATE_RARE =             1 &lt;&lt; 0, // Rare or not
+RATE_SHOVELABLE =       1 &lt;&lt; 1, // Whether shoveling is possible
+RATE_ITEM_COLLECTABLE = 1 &lt;&lt; 2, // Whether it is possible to automatically pick up items
+RATE_WEIGHT_1000 =      1 &lt;&lt; 3, // Increase possession (1000) (ep 9.x)
+RATE_WEIGHT_2000 =      1 &lt;&lt; 4, // Increase possession (2000) (ep 9.x)
+RATE_WEIGHT_4000 =      1 &lt;&lt; 5, // Increase possession (4000) (ep 9.x)
+RATE_WEIGHT_8000 =      1 &lt;&lt; 6, // Increase possession (8000) (ep 9.x)
+</code></pre>
+<p><strong>Note: in ep7.2 the value is always <code>5</code> which enumerates to the following flags:</strong></p>
+<pre><code class="language-cpp">RATE_RARE =             1 &lt;&lt; 0, // Rare or not
+RATE_ITEM_COLLECTABLE = 1 &lt;&lt; 2, // Whether it is possible to automatically pick up items
+</code></pre>
+<p><strong>Note: newer pets such as Boss pets in ep9+ use <code>21</code> which enumerates to the following flags:</strong></p>
+<pre><code class="language-cpp">RATE_RARE =             1 &lt;&lt; 0, // Rare or not
+RATE_ITEM_COLLECTABLE = 1 &lt;&lt; 2, // Whether it is possible to automatically pick up items
+RATE_WEIGHT_2000 =      1 &lt;&lt; 4, // Increase possession (2000) (ep 9.x)
+</code></pre>
+<h2 id="model">model</h2>
+<hr />
+<p>The filename of the model this pet will use to be rendered e.g.</p>
+<p><code>pet_arcadia</code></p>
+<h2 id="motion_file_id">motion_file_id</h2>
+<hr />
+<p>This id links to the <code>MonsterMotionSet</code> table/rdb and must link to a vlid <code>id</code> or the pet will be invisible when summoned.</p>
+<h2 id="item-collection">Item Collection</h2>
+<hr />
+<p>In order for the <code>Collect Items</code> skill to be properly displayed for a summoned pet an entry needs to be created in the <code>SkillTreeResource</code> table/rdb with the pet's id as the <code>job_id</code> and the <code>skill_id</code> as <code>46018</code> <em>(All other fields may be <code>0</code>)</em></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

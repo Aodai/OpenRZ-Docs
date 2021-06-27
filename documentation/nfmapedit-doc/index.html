@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="http://openrz.org/documentation/nfmapedit-doc/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>NFMapEdit Documentation - OpenRZ</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "NFMapEdit Documentation";
+    var mkdocs_page_input_path = "documentation\\nfmapedit-doc.md";
+    var mkdocs_page_url = "/documentation/nfmapedit-doc/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> OpenRZ</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/">Guides</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../releases/">Releases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="https://discord.gg/6rxB56w5x5">Discord</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../credits_thanks/">Credits/Thanks</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">OpenRZ</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>NFMapEdit Documentation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="definitions">Definitions</h2>
+<hr />
+<ul>
+<li><strong>NFA</strong> <em>(nFlavor Attribute)</em> - Contains polygons used for collision/bounding.</li>
+<li><strong>NFC</strong> <em>(nFlavor Local/Region)</em> - Contains information regarding regions (such as area title, bgm, sky/fog/cloud colors as-well as region ambient, diffuse and specular lighting, weather and more)</li>
+<li><strong>NFE</strong> <em>( nFlavor Event)</em> - Contains LUA script triggers, such as on_init, on_enter, on_leave which can be used to spawn monsters/props or otherwise further quests etc.</li>
+<li><strong>NFK</strong> <em>( nFlavor Camera Work)</em> - Contains camera movement information. *(such as the opening scene after creating a new character. !!!The SFrame is coded to only recognize the three existing nfk!!!)</li>
+<li><strong>NFL</strong> <em>( nFlavor Lighting)</em> - Contains lighting (directional, omni-directional) information that can be processed through <a href="http://openrz.ddns.net/t/map-utility-light-map-generator/57">Light Map Generator</a> to create shadows on props/terrain.</li>
+<li><strong>NFM</strong> <em>( nFlavor Map)</em> - Contains information regarding the terrain (such as height, terrain textures and static props)</li>
+<li><strong>NFP</strong> <em>(nFlavor Path)</em> - Contains information regarding automated walking paths (for monster, npc etc)</li>
+<li><strong>NFS</strong> <em>( nFlavor Script)</em> - Contains information regarding monster spawns (similar to NFE)</li>
+<li><strong>NFW</strong> <em>(nFlavor Water)</em> - Contains information regarding water placed on the terrain</li>
+<li><strong>GCI/GC2</strong> <em>( nFlavor Grass Colony)</em> - Contains information regarding grass on the terrain</li>
+<li><strong>QPF</strong> <em>(Quest Prop File)</em> - Contains information regarding props that can be interacted with by the player. </li>
+</ul>
+<h2 id="first-start">First start</h2>
+<hr />
+<p>When starting for the first time, you will be requested to provide a 'Resource' folder. This is the folder where a structured/unstructured client dump is located.</p>
+<p>However, with this version you can also provide a client directory (containing data.000-008)</p>
+<h2 id="panes">Panes</h2>
+<hr />
+<h3 id="area-selection">Area Selection</h3>
+<p>This pane allows selecting areas of the terrain (by dragging a square onto the displayed terrain) is denoted by a black and white checkered area. </p>
+<p><em>(Unless View &gt; Always Show Selection is checked, the area select tool and selected area can only be used in this pane)</em></p>
+<p>This pane also allows the generation/testing/view/camera configuration for the given maps PVS. <a href="https://en.wikipedia.org/wiki/Potentially_visible_set">More information on PVS can be found here.</a></p>
+<p>You can find a thorough explanation of the controls in this tab below:</p>
+<p><em>Select Area</em><em>
+* Select - </em>Selected the entire loaded terrain<em>
+* Deselect - </em>Deselects currently selected terrain*</p>
+<p><strong>Local PVS</strong></p>
+<ul>
+<li>Build PVS - <em>Generates a .pvs of the currently loaded terrain (this is for the entire loaded terrain)</em></li>
+<li>test PVS - <em>Toggles PVS rendering to simulate the effect this pvs will have ingame</em></li>
+<li>Distance - <em>??? Needs testing</em></li>
+<li>Count - <em>??? Needs testing</em></li>
+<li>Length - <em>??? Needs testing</em></li>
+<li>Camera Offset - <em>??? Needs testing</em></li>
+<li>Position - <em>??? Needs testing</em></li>
+<li>Target - <em>??? Needs testing</em></li>
+<li>SAMPLE Point Visible - <em>??? Needs testing</em></li>
+<li>Preview - <em>??? Needs testing</em></li>
+</ul>
+<p><strong>User Sample Point</strong></p>
+<ul>
+<li>Enable - <em>Toggles user based PVS points</em></li>
+<li>User Build PVS - <em>Generates PVS based on user points instead of automatic selection</em></li>
+<li>All Delete Sample Point - <em>Removes all user placed points</em></li>
+<li>Force Render - <em>??? Needs testing</em></li>
+</ul>
+<p><strong>Find Hole</strong></p>
+<ul>
+<li>'#'- <em>??? Needs testing</em></li>
+</ul>
+<p><strong>Segment Modify</strong></p>
+<ul>
+<li>Selection Prop - <em>??? Needs testing</em></li>
+<li>Selection Segment - <em>??? Needs testing</em></li>
+<li>None - <em>??? Needs testing</em></li>
+<li>Export TXT - <em>??? Needs testing</em></li>
+<li>Import TXT - <em>??? Needs testing</em></li>
+<li>View Caption Segment - <em>??? Needs testing</em></li>
+<li>View Caption Prop - <em>??? Needs testing</em></li>
+</ul>
+<h4 id="height-editor">Height Editor</h4>
+<p>This pane allows the user to alter the height of the loaded maps terrain. This includes; Raising/Lowering/Planarizing (leveling out varying terrain heights to a more common height) and flattening (useful for creating plateaus.)</p>
+<p>You can find a thorough explanation of the controls in this tab below:</p>
+<ul>
+<li>Raise (F1) - <em>Raises the terrain by the given size and pressure (intensity)</em></li>
+<li>Lower (F2) - <em>Lowers the terrain by the given size and pressure (intensity)</em></li>
+<li>Planarize (F3) - <em>Planarize (averages) the terrain by the given size and pressure (intensity)</em></li>
+<li>Ignore Palanarize Pressure (F4) - <em>Causes the Planarization of the terrain to ignore the pressure (intensity) currently selected</em></li>
+<li>Flatten - <em>Flattens the terrain (useful to create plateaus)</em></li>
+</ul>
+<h4 id="tile-editor">Tile Editor</h4>
+<p>This pane allows the users to lay/alter/remove textures on the loaded terrain. This includes the ability to blend up to three unique textures in a variety of blend ratios.</p>
+<p>You can find a thorough explanation of the controls in this tab below:</p>
+<p><em>coming soon..</em></p>
+<h2 id="opening-maps">Opening Maps</h2>
+<hr />
+<p>Maps can be opened in multiple ways:</p>
+<ol>
+<li>Press <em>(and holding)</em> the left 'ALT' key, then pressing the 'F' key, then pressing the 'O' key.</li>
+<li>Click the 'File' menu and then click 'Open Map (O)'</li>
+<li>Using the 'CTRL' + 'O' key combination</li>
+<li>Provide proper 'X' and 'Y' map coordinates in the 'Information' group box
+4.1 <em>Example: m009(x)_004(y) or x:9 y:4 is Horizon</em>
+4.2 <em>No layer is required</em>
+4.3 <strong># of Additional Maps to Load can load adjacent maps but performance takes a giant hit, it is not recommended to load more than 1 additional map</strong></li>
+</ol>
+<h2 id="camera-movement">Camera Movement</h2>
+<hr />
+<p>The camera position can be moved in a variety of ways:</p>
+<h4 id="keyboard">Keyboard</h4>
+<ul>
+<li><code>↑</code> / <code>Num. Pad 8</code> - Forward <em>(x plane)</em></li>
+<li><code>←</code> / <code>Num. Pad 4</code> - Left <em>(y plane)</em></li>
+<li><code>↓</code> / <code>Num. Pad 3</code> - Backward <em>(x plane)</em></li>
+<li><code>→</code> /  <code>Num. Pad 6</code> - Right <em>(y plane)</em></li>
+<li><code>Shift</code> - Increases the movement speed of the camera movement through the directional keys</li>
+</ul>
+<h4 id="mouse">Mouse</h4>
+<ul>
+<li>Moving across the <code>x / y</code> plane</li>
+<li>Press and hold the <code>Center / Scroll mouse wheel</code>and drag  the mouse.</li>
+<li>Panning </li>
+<li>Press and hold the <code>L. Ctrl</code> key and the <code>Center / Scroll mouse wheel</code> and drag the mouse.</li>
+</ul>
+<p><em>(to increase the camera movement speed hold the <code>Shift</code> key)</em></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

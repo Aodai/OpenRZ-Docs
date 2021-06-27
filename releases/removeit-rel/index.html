@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="http://openrz.org/releases/removeit-rel/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>RemoveIT Script - OpenRZ</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "RemoveIT Script";
+    var mkdocs_page_input_path = "releases\\removeit-rel.md";
+    var mkdocs_page_url = "/releases/removeit-rel/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> OpenRZ</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../documentation/">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/">Guides</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../">Releases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="https://discord.gg/6rxB56w5x5">Discord</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../credits_thanks/">Credits/Thanks</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">OpenRZ</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>RemoveIT Script</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="description">Description</h2>
+<hr />
+<p>Maintenance sql script to clear the <code>Telecaster</code> of deleted characters <em>(aswell as their assets and pets)</em></p>
+<h2 id="script">Script</h2>
+<hr />
+<pre><code class="language-sql">USE Telecaster -- Change my name to your Telecaster name
+
+DECLARE @CUR INT,
+        @MAX INT,
+        @SID INT,
+        @NAME NVARCHAR(50),
+        @PETCUR INT,
+        @PETMAX INT,
+        @PETSID INT
+
+SET @CUR = 0
+SET @PETCUR = 0
+SET @MAX = (SELECT COUNT(*) FROM dbo.Character WHERE name LIKE '%@%')
+
+PRINT CONCAT(N'There are a total of ', @MAX, N' deleted characters')
+
+WHILE @CUR &lt; @MAX 
+BEGIN
+    SET @SID = (SELECT TOP(1) sid FROM dbo.Character WHERE name LIKE '%@%')
+    SET @NAME = (SELECT TOP(1) name FROM dbo.Character WHERE sid = @SID)
+
+    PRINT CONCAT(N'Processing entry ', @CUR, N' of ', @MAX,  N' with SID: ', @SID, N' and NAME: ', @NAME)
+
+    DELETE FROM dbo.Character WHERE sid = @SID
+    DELETE FROM dbo.Auction WHERE seller_id = @SID
+    DELETE FROM dbo.Denials WHERE owner_id = @NAME OR denial_id = @NAME
+    DELETE FROM dbo.EventAreaEnterCount WHERE player_id = @SID
+    DELETE FROM dbo.Farm WHERE owner_id = @SID
+    DELETE FROM dbo.Favor WHERE owner_id = @SID
+    DELETE FROM dbo.Friends WHERE owner_id = @NAME or friend_id = @NAME
+    DELETE FROM dbo.GuildMember WHERE player_id = @SID
+    DELETE FROM dbo.Item WHERE owner_id = @SID
+    DELETE FROM dbo.ItemCoolTime WHERE owner_id = @SID
+    DELETE FROM dbo.ItemKeeping WHERE owner_id = @SID
+    DELETE FROM dbo.Party WHERE leader_id = @SID
+    DELETE FROM dbo.Quest WHERE owner_id = @SID
+    DELETE FROM dbo.QuestCoolTime WHERE owner_id = @SID
+    DELETE FROM dbo.RankingScore WHERE owner_id = @SID
+    DELETE FROM dbo.Skill WHERE owner_id = @SID
+    DELETE FROM dbo.State WHERE owner_id = @SID
+    DELETE FROM dbo.Title WHERE owner_id = @SID
+    DELETE FROM dbo.TitleCondition WHERE owner_id = @SID
+
+    SET @PETMAX = (SELECT COUNT(*) FROM dbo.Summon WHERE owner_id = @SID)
+
+    PRINT CONCAT(@PETMAX, N' Pets detected for this character.')
+
+    WHILE @PETCUR &lt; @PETMAX 
+    BEGIN
+        SET @PETSID = (SELECT TOP(1) sid FROM dbo.Summon WHERE owner_id = @SID)
+        DELETE FROM dbo.Summon WHERE sid = @PETSID
+        DELETE FROM dbo.Item WHERE summon_id = @PETSID
+        DELETE FROM dbo.Skill WHERE summon_id = @PETSID
+        DELETE FROM dbo.State WHERE summon_id = @PETSID
+
+        SET @PETCUR = @PETCUR + 1
+
+        PRINT CONCAT(N' Pet bearing sid ', @PETSID, N' and all related information deleted.')
+    END
+
+    PRINT N'Delete Successful'
+
+    SET @CUR = @CUR + 1
+END
+</code></pre>
+<h2 id="usage">Usage</h2>
+<hr />
+<ol>
+<li>Launch <code>SSMS</code></li>
+<li>Use <code>CTRL+N</code> key combo</li>
+<li>Paste the <a href="#script">script</a></li>
+<li>Edit <code>USE</code> statement as needed</li>
+<li>Execute</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

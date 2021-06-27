@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="http://openrz.org/documentation/mixresource-doc/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>MixResource Documentation - OpenRZ</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "MixResource Documentation";
+    var mkdocs_page_input_path = "documentation\\mixresource-doc.md";
+    var mkdocs_page_url = "/documentation/mixresource-doc/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> OpenRZ</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/">Guides</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../releases/">Releases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="https://discord.gg/6rxB56w5x5">Discord</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../credits_thanks/">Credits/Thanks</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">OpenRZ</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>MixResource Documentation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="description">Description</h1>
+<hr />
+<p>This document will explain use cases for the <code>dbo.MixResource</code> table and rdb.</p>
+<h2 id="mix-type">Mix Type</h2>
+<hr />
+<pre><code class="language-cpp">MIX_ENHANCE                                                             = 101,
+MIX_ENHANCE_SKILL_CARD                                                  = 102,
+MIX_ENHANCE_WITHOUT_FAIL                                                = 103,
+MIX_ENHANCE_CREATURE_CARD                                               = 104,
+MIX_ENHANCE_CREATURE_CARD_WITH_JOKER                                    = 105,
+MIX_SET_LEVEL                                                           = 201,
+MIX_SET_LEVEL_CREATE_ITEM                                               = 202,
+MIX_SET_LEVEL_SET_FLAG                                                  = 211,
+MIX_SET_LEVEL_SET_FLAG_CREATE_ITEM                                      = 212,
+MIX_SET_LEVEL_SET_FLAG_CREATE_ITEM_WITH_MAIN_MATERIAL_LEVEL             = 213,
+MIX_SET_LEVEL_ON_SUB_MATERIAL_LEVEL_SET_FLAG                            = 214,
+MIX_SET_LEVEL_SET_FLAG_CREATE_ITEM_WITH_MAIN_MATERIAL_LEVEL_SET_ZERO    = 215,
+MIX_ADD_LEVEL                                                           = 301,
+MIX_ADD_LEVEL_CREATE_ITEM                                               = 302,
+MIX_ADD_LEVEL_SET_FLAG                                                  = 311,
+MIX_ADD_LEVEL_SET_FLAG_CREATE_ITEM                                      = 312,
+MIX_RECYCLE                                                             = 401,
+MIX_RECYCLE_ENHANCE                                                     = 402,
+MIX_RESTORE_ENHANCE_SET_FLAG                                            = 501,
+MIX_CREATE_ITEM                                                         = 601,
+MIX_REPLACE_WITH                                                        = 602,
+MIX_SET_ELEMENTAL_EFFECT                                                = 701,
+MIX_SET_ELEMENTAL_EFFECT_PARAMETER                                      = 702,
+MIX_SET_SOCKET                                                          = 703,
+MIX_SACRIFICE_ITEM_FOR_ETHEREAL_DURABILITY_WITH_MESSAGE                 = 801,
+MIX_TRANSMIT_ETHEREAL_DURABILITY                                        = 802,
+MIX_RECOVER_EXHAUSTED_ETHEREAL_DURABILITY                               = 803,
+MIX_SACRIFICE_ITEM_FOR_ETHEREAL_DURABILITY                              = 804,
+MIX_SACRIFICE_ITEM_FOR_ETHEREAL_STONE_DURABILITY                        = 805,
+MIX_TRANSMIT_ETHEREAL_DURABILITY_FROM_ETHEREAL_STONE                    = 806,
+
+</code></pre>
+<h2 id="check-type">Check Type</h2>
+<hr />
+<p>The check enumeration is typically used in the <code>sub0x_type_0x</code> depending on the <code>sub_material_count</code></p>
+<pre><code class="language-cpp">CHECK_ITEM_GROUP = 1,
+CHECK_ITEM_CLASS = 2,
+CHECK_ITEM_ID = 3,
+CHECK_ITEM_RANK = 4,
+CHECK_ITEM_LEVEL = 5,
+CHECK_FLAG_ON = 6,
+CHECK_FLAG_OFF = 7,
+
+CHECK_ENHANCE_MATCH = 8,
+CHECK_ENHANCE_DISMATCH = 9,
+CHECK_ITEM_COUNT = 10,
+CHECK_ELEMENTAL_EFFECT_MATCH = 11,
+CHECK_ELEMENTAL_EFFECT_MISMATCH = 12,
+CHECK_ITEM_WEAR_POSITION_MATCH = 13,
+CHECK_ITEM_WEAR_POSITION_MISMATCH = 14,
+CHECK_ITEM_COUNT_GE = 15, // The number of items exceeds the specified quantity
+
+CHECK_ITEM_ETHEREAL_DURABILITY_E = 16, // Ethereal durability is the same as the specified value
+CHECK_ITEM_ETHEREAL_DURABILITY_NE = 17, // Ethereal durability is different from the specified value
+CHECK_ITEM_GRADE = 18, // Item grade is same as specified value
+
+CHECK_SAME_ITEM_ID = 19, // Item code identical to the item in the designated slot (auxiliary material cross-reference type)
+CHECK_SAME_SUMMON_CODE = 20, // Minion code identical to the item in the designated slot (code material cross-reference type)
+CHECK_ITEM_EXPIRED_TIME_GE = 21, // The remaining time of the fixed-term item is greater than or equal to the specified value
+CHECK_ITEM_EXPIRED_TIME_LE = 22, // The remaining time of the fixed-term item is less than or equal to the specified value
+CHECK_ITEM_FIRST_SOCKET_CODE_MATCH = 23, // The code of the first slot is the same as the specified value
+CHECK_SAME_ITEM_ENHANCE = 24, // same enhancement as the item in the designated slot (auxiliary material cross-reference type)
+CHECK_SAME_SKILL_ID = 25, // The same skill ID as the item in the specified slot (auxiliary material cross-reference type)
+</code></pre>
+<h2 id="explination-by-type">Explination by Type</h2>
+<hr />
+<p>Below the various types of combinations will be broken down by their type <em>(e.g. their mix_type)</em></p>
+<h3 id="create-item-601">Create Item (601)</h3>
+<hr />
+<ul>
+<li><code>mix_value_01</code> - Result item id <em>(the item this combination will create)</em></li>
+<li><code>mix_value_02</code> - Result item lv <em>(the level of the resulting item)</em></li>
+<li><code>mix_value_03</code> - Percent (0-100) this combination will succeeed</li>
+<li><code>mix_value_04</code> - Result item minimum count <em>(the minimum number of the resulting item for this combination)</em></li>
+<li><code>mix_value_05</code> - Result item maximum count <em>(the maximum number of the resulting item for this combination)</em></li>
+<li><code>sub_material_count</code> - The amount of items that must be combined to create the result item.<ul>
+<li>Amount of <code>sub0*_type0*</code> / <code>sub0*_value_0*</code>fields completed/used is determined by this value.</li>
+</ul>
+</li>
+<li><code>sub0*_type_0*</code> - Value enumerated by <a href="#check-type">Check Type Enum</a></li>
+<li><code>sub0*_value_0*</code> - Depends on the matching <code>sub0*_type_0*</code> field before it.  <em>(See following example)</em></li>
+</ul>
+<p><strong>Example</strong></p>
+<pre><code>sub01_type_01: 3
+sub01_value_01: 490003
+sub01_type_02: 10
+sub01_value_02: 1
+</code></pre>
+<p>In the above example if we refer to the <a href="#check-type">Check Type Enum</a> we can see <code>3</code> resolves to: <code>CHECK_ITEM_ID</code> and <code>10</code> resolves to <code>CHECK_ITEM_COUNT</code>.</p>
+<p>So in the above example, the first required item/ingredient for the combination is <code>490003</code> because a <code>sub01_type_01</code> of <code>3</code> means we're checking the <code>sub01_value_01</code> field for an item id. We are also checking to see if there is <code>1</code> of that item because the <code>sub01_type_02</code> of  <code>10</code> means were checking <code>sub01_value_02</code> for a count.</p>
+<h3 id="enhance-creature-card-104105">Enhance Creature Card (104/105)</h3>
+<hr />
+<p><strong>Note:</strong> <em>Type <code>104</code> is enhance without Joker / <code>105</code> is enhance with Joker</em></p>
+<ul>
+<li><code>mix_value_01</code> - <code>EnhanceResource</code> id used in success calculation for stage +1/5</li>
+<li><code>mix_value_04</code> - If enhance is type <code>104 (without joker)</code> and the <code>main</code> creature card is <code>&gt;=</code> <code>+3</code> then this field will contain a creature card item id (likely joker <code>540070</code>)</li>
+<li><code>mix_value_06</code> - Maximum percentage chance that the item id in <code>mix_value_04</code> will be given on an enhance failure of type <code>104</code></li>
+<li><code>sub_material_count</code> - The amount of items that must be combined to create the result item.<ul>
+<li>Amount of <code>sub0*_type0*</code> / <code>sub0*_value_0*</code>fields completed/used is determined by this value.</li>
+</ul>
+</li>
+<li><code>main0*_type_0*</code> - Value enumated by <a href="#check-type">Check Type Enum</a></li>
+<li><code>main0*_value_0*</code> - Depends on the matching <code>main0*_type_0*</code></li>
+<li><code>sub0*_type_0*</code> - Value enumerated by <a href="#check-type">Check Type Enum</a></li>
+<li><code>sub0*_value_0*</code> - Depends on the matching <code>sub0*_type_0*</code> field before it.  <em>(See following example)</em></li>
+</ul>
+<p><strong>Example (type 104)</strong></p>
+<pre><code>type: 104
+mix_value_01: 2000
+mix_value_04: 540070
+mix_value_06: 4
+main_type_01: 1
+main_value_01: 13
+main_type_02: 6
+main_value_02: 31
+sub01_type_01: 1
+sub01_value_01: 13
+sub01_type_02: 6
+sub01_value_02: 31
+sub01_type_03: 20
+sub02_type_01: 3
+sub02_value_01: 710001
+</code></pre>
+<p>In the above example, we can tell we are enhancing a creature card without a joker because the type is <code>104</code></p>
+<p>We also notice that our chance for success (per stage 1/5) can be found in the <code>EnhanceResource</code> table with <code>enhance_id</code> <code>2000</code></p>
+<p>We also see that since we are type <code>104</code> that if our enhance fails at or above +3 (stage 3) that there is a 4% (<code>mix_value_06</code>) chance that a <code>Joker</code> (<code>540070</code>) will be the result.</p>
+<p>By refering to <a href="#check-type">Check Type Enum</a> we know that main_type_01 (1 - <code>CHECK_ITEM_GROUP</code>) means our main creature card (item) must have group <code>13</code> (<code>main_value_01</code>) and by checking main_type_02 (<code>6</code> - <code>CHECK_FLAG_ON</code>) we can tell that the main creature card (item) must bear flag <code>31</code> (<code>Tamed Pet</code>)</p>
+<p>We can also see that <code>sub01_type_01/02</code> and <code>sub_01_value_01/02</code> are the same basically telling us our second creature card must be of group <code>13</code> and bearing the <code>31</code> (<code>Tamed Pet</code>) flag.</p>
+<p>Looking at <code>sub01_type_03</code> (<code>20</code> -<code>CHECK_SAME_SUMMON_CODE</code>) we can see that both the main and combined creature must be the same summon.</p>
+<p>And lastly; <code>sub02_type_01</code> (<code>3</code> - <code>CHECK_ITEM_ID</code>) means an item with id (<code>710001</code> - <code>Soul Catalyst</code> ) must also be present in the combination</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

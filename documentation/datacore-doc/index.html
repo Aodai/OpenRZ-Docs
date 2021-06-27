@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="http://openrz.org/documentation/datacore-doc/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>DataCore Documentation - OpenRZ</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "DataCore Documentation";
+    var mkdocs_page_input_path = "documentation\\datacore-doc.md";
+    var mkdocs_page_url = "/documentation/datacore-doc/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> OpenRZ</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/">Guides</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../releases/">Releases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="https://discord.gg/6rxB56w5x5">Discord</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../credits_thanks/">Credits/Thanks</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">OpenRZ</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>DataCore Documentation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="description">Description</h1>
+<hr />
+<p>Provides interactibility with the Rappelz proprietary <code>Data.xxx</code> file storage system.</p>
+<h2 id="namespaces">Namespaces</h2>
+<hr />
+<ul>
+<li><code>DataCore</code></li>
+<li><code>DataCore.Functions</code></li>
+<li><code>DataCore.Structures</code></li>
+</ul>
+<h2 id="important-classes">Important Classes</h2>
+<hr />
+<h3 id="indexentry">IndexEntry</h3>
+<p>The <code>IndexEntry</code> stores information regarding a <code>file</code> stored in the <code>data.xxx</code></p>
+<h4 id="properties">Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td><code>string</code></td>
+<td>The file name <em>(including extension)</em> of this entry</td>
+</tr>
+<tr>
+<td>Extension</td>
+<td><code>string</code></td>
+<td>The file extension of this entry <em>(does not include preceeding <code>.</code>)</em></td>
+</tr>
+<tr>
+<td>Hash</td>
+<td><code>byte[]</code></td>
+<td>The unhashed file name of this entry</td>
+</tr>
+<tr>
+<td>HashName</td>
+<td><code>string</code></td>
+<td>The hashed file name of this entry</td>
+</tr>
+<tr>
+<td>Length</td>
+<td><code>int</code></td>
+<td>The length of this entry</td>
+</tr>
+<tr>
+<td>Offset</td>
+<td><code>int64</code></td>
+<td>The location of this entry in the housing <code>data.xxx</code></td>
+</tr>
+<tr>
+<td>DataID</td>
+<td><code>int</code></td>
+<td>The data file this entry is stored in <em>(e.g. <code>data.001</code>)</em></td>
+</tr>
+<tr>
+<td>DataPath</td>
+<td><code>string</code></td>
+<td>The folder this entry would be stored at when using the vanilla <code>PatchServer</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="constructors">Constructors</h2>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>none</code></td>
+<td>Dummy/Generic constructor</td>
+</tr>
+<tr>
+<td><code>bool</code> backup, <code>Encoding</code> encoding</td>
+<td>Instantiate the core with only backup toggled and encoding set.</td>
+</tr>
+<tr>
+<td><code>bool</code> backup, <code>string</code> configPath</td>
+<td>Not implemented</td>
+</tr>
+<tr>
+<td><code>Encoding</code> encoding, <code>bool</code> backup, <code>string</code> configPath</td>
+<td>Not Implemented</td>
+</tr>
+</tbody>
+</table>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CurrentMaxDetermined</td>
+<td><code>int</code> Maximum</td>
+<td>Informs the calling application of the value to be used as <code>Progress Maximum</code></td>
+</tr>
+<tr>
+<td>CurrentProgressChanged</td>
+<td><code>int</code> Value</td>
+<td>Informs the calling application that the progress of the current operation has changed.</td>
+</tr>
+<tr>
+<td>CurrentProgressReset</td>
+<td><code>bool</code> WriteOK</td>
+<td>Informs the calling application that the current operation has completed and the progressbar should be reset. <em>(In the case of console apps it also determines if an [OK] and line break should be appended to the current line)</em></td>
+</tr>
+<tr>
+<td>WarningOccured</td>
+<td><code>string</code> warning</td>
+<td>Informs the calling application of a non-critical error that has occured.</td>
+</tr>
+<tr>
+<td>MessageOccured</td>
+<td><code>string</code> message</td>
+<td>Informs the calling application of a message that should be displayed to the user. <em>(In the case of console apps it also includes formatting such as tabs and line breaks)</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="properties_1">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DataDirectory</td>
+<td><code>string</code></td>
+<td>The directory containing <code>data.xxx</code> files.</td>
+</tr>
+<tr>
+<td>Index</td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Stores all file entries indexed by the <code>data.000</code></td>
+</tr>
+<tr>
+<td>RowCount</td>
+<td><code>int</code></td>
+<td>The count of loaded <code>IndexEntry</code> entries.</td>
+</tr>
+<tr>
+<td>ExtensionsList</td>
+<td><code>List&lt;ExtensionInfo&gt;</code></td>
+<td>Collection of extensions present in the loaded <code>Index</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="methods">Methods</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Arguments</th>
+<th>Return</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Load</td>
+<td><code>string</code> path (of data.000)</td>
+<td><code>void</code></td>
+<td>Loads a <code>data.000</code> at the given <code>path</code></td>
+</tr>
+<tr>
+<td>Save</td>
+<td><code>string</code> path</td>
+<td><code>void</code></td>
+<td>Saves the contents of <code>Index</code> to to the given <code>path</code></td>
+</tr>
+<tr>
+<td>Sort</td>
+<td><code>SortType</code> type</td>
+<td><code>void</code></td>
+<td>Sorts a previously loaded <code>data.000</code> index</td>
+</tr>
+<tr>
+<td>EntryExists</td>
+<td><code>string</code> name</td>
+<td><code>bool</code></td>
+<td>Determines if an <code>IndexEntry</code> exists in the loaded <code>data.000</code></td>
+</tr>
+<tr>
+<td>GetStoredSize</td>
+<td><code>List&lt;IndexEntry&gt;</code> filteredList</td>
+<td><code>int</code></td>
+<td>Calculates the total size of the files in the filteredList</td>
+</tr>
+<tr>
+<td>FindAll</td>
+<td><code>string</code> fieldName, <code>string</code> op, <code>object</code> criteria</td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Locates all <code>IndexEntry</code> with matching criteria and returns them as a list.</td>
+</tr>
+<tr>
+<td>GetEntry</td>
+<td><code>int</code> index</td>
+<td><code>IndexEntry</code></td>
+<td>Returns the IndexEntry at the given index</td>
+</tr>
+<tr>
+<td>GetEntry</td>
+<td><code>string</code> name</td>
+<td><code>IndexEntry</code></td>
+<td>Returns the IndexEntry with matching name</td>
+</tr>
+<tr>
+<td>GetEntry</td>
+<td><code>int</code> dataID, <code>int</code> offset</td>
+<td>IndexEntry</td>
+<td>Returns the IndexEntry with matching dataID and offset</td>
+</tr>
+<tr>
+<td>GetEntriesByPartialName</td>
+<td><code>string</code> partialName</td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Returns a list of all entries whose names contains <code>partialName</code> <strong>(You can use wildcards in the partialName)</strong> <em>(Update by Gangor)</em></td>
+</tr>
+<tr>
+<td>GetEntriesByDataId</td>
+<td><code>int</code> dataId, <code>SortType</code> type</td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Returns a list of all entries with matching <code>dataId</code>, sortable by <code>type</code>.</td>
+</tr>
+<tr>
+<td>GetEntriesByDataId</td>
+<td><code>List&lt;IndexEntry&gt;</code> filteredIndex, <code>int</code> dataId, <code>SortType</code> type</td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Returns a list of all entries with matching <code>dataId</code> and type from the <code>filteredIndex</code></td>
+</tr>
+<tr>
+<td>GetEntriesByExtension</td>
+<td><code>string</code> extension</td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Returns a list of all entries with matching extension</td>
+</tr>
+<tr>
+<td>GetEntriesByExtension</td>
+<td><code>string</code> extension, <code>SortType</code> type</td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Returns a list of all entries with matching extension sorted by <code>type</code></td>
+</tr>
+<tr>
+<td>GetEntriesByExtension</td>
+<td><code>string</code> extension, <code>string</code> term</td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Returns a list of all entries whose name contains term and extension matches extension <em>(Overload by Gangor)</em></td>
+</tr>
+<tr>
+<td>GetEntriesByExtension</td>
+<td><code>string</code> extension, <code>string</code> term, <code>SortType</code> type</td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Returns a list of all entries whose name contains term and extension matches <code>extension</code> sorted on <code>type</code></td>
+</tr>
+<tr>
+<td>GetEntriesByExtension</td>
+<td><code>string</code> extension, <code>int</code> dataId</td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Returns a list of all entries whose extension matches extension and <code>dataId</code> matches <code>dataId</code></td>
+</tr>
+<tr>
+<td>GetEntriesByExtensions</td>
+<td><code>string[]</code> extensions</td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Returns a list of all entries whose extension match extensions</td>
+</tr>
+<tr>
+<td>DeleteEntriesByDataId</td>
+<td><code>int</code> dataId</td>
+<td><code>void</code></td>
+<td>Removes all entries with matching <code>dataId</code> from the loaded index</td>
+</tr>
+<tr>
+<td>DeleteEntryByName</td>
+<td><code>string</code> fileName, <code>string</code> dataDirectory</td>
+<td><code>void</code></td>
+<td>Deletes an entry and it's stored file entry from the loaded index</td>
+</tr>
+<tr>
+<td>DeleteEntryByIdAndOffset</td>
+<td><code>int</code> id, <code>int</code> offset</td>
+<td><code>void</code></td>
+<td>Deletes an entry based on a provided id and <code>offset</code></td>
+</tr>
+<tr>
+<td>GetFileBytes</td>
+<td><code>string</code> fileName</td>
+<td><code>byte[]</code></td>
+<td>Returns the collection of bytes that represent the given <code>fileName</code></td>
+</tr>
+<tr>
+<td>GetFileBytes</td>
+<td><code>string</code> fileName, int dataId, <code>long</code> offset, <code>long</code> length</td>
+<td><code>byte[]</code></td>
+<td>Returns the collection of bytes that represent the file in the given <code>data.xx</code> <code>{dataId}</code> at <code>offset</code> with <code>length</code></td>
+</tr>
+<tr>
+<td>GetFileBytes</td>
+<td><code>IndexEntry</code> entry</td>
+<td><code>byte[]</code></td>
+<td>Returns the collection of bytes that represent the file described by <code>entry</code></td>
+</tr>
+<tr>
+<td>ExportFileEntry</td>
+<td>string <code>buildPath</code>, <code>IndexEntry</code> entry</td>
+<td><code>void</code></td>
+<td>Exports the file associated to the given <code>entry</code></td>
+</tr>
+<tr>
+<td>ExportExtEntries</td>
+<td><code>string</code> buildDirectory, <code>string</code> extension</td>
+<td><code>void</code></td>
+<td>Exports all files whose extension match the provided extension</td>
+</tr>
+<tr>
+<td>ExportAllEntries</td>
+<td><code>string</code> buildDirectory</td>
+<td><code>void</code></td>
+<td>Exports all files</td>
+</tr>
+<tr>
+<td>ImportFileEntry</td>
+<td><code>string</code> filePath</td>
+<td><code>void</code></td>
+<td>Adds the file at <code>filePath</code> to the Rappelz <code>data.xxx</code> file storage system</td>
+</tr>
+<tr>
+<td>ImportFileEntry</td>
+<td><code>string</code> fileName, <code>byte[]</code> fileBytes</td>
+<td><code>void</code></td>
+<td>Adds the file represented by fileBytes to the Rappelz <code>data.xxx</code> file storage system as name fileName <em>(Suggested by Gangor)</em></td>
+</tr>
+<tr>
+<td>BuildDataFiles</td>
+<td><code>string</code> dumpDirectory, <code>string buildPath</code></td>
+<td><code>List&lt;IndexEntry&gt;</code></td>
+<td>Builds new <code>data.001-008</code> from the provided dump directory and returns the associated <code>data.000</code> index</td>
+</tr>
+<tr>
+<td>RebuildDataFile</td>
+<td><code>int</code> dataId, <code>string</code> buildDirectory</td>
+<td><code>void</code></td>
+<td>Rebuilds the data.00{<code>dataId</code>} into the <code>buildDirectory</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<hr />
+<p>To add <code>DataCore</code> functionality to your <code>.net</code> class add the <code>using</code> directive.</p>
+<pre><code class="language-csharp">using DataCore;
+</code></pre>
+<h3 id="loading-data000">Loading data.000</h3>
+<hr />
+<pre><code class="language-csharp">using System.Text;
+using DataCore;
+
+class Program()
+{
+    static void Main(string[] args)
+    {
+        //Encoding is optional, but suggested!
+        Encoding encoding = Encoding.Default;
+
+        //Backup is optional, but suggested!
+        bool backups = true;
+
+        string path = &quot;C:/Rappelz/Client/data.000&quot;;
+
+        Core core = new Core(backups, encoding);
+
+        core.Load(path);
+
+        Console.WriteLine($&quot;{core.RowCount} entries loaded from {path}&quot;);
+    }   
+}
+</code></pre>
+<h3 id="fetching-indexentry">Fetching IndexEntry</h3>
+<hr />
+<pre><code class="language-csharp">using System.Text;
+using DataCore;
+using DataCore.Structures;
+
+class Program()
+{
+    static void Main(string[] args)
+    {
+        //Encoding is optional, but suggested!
+        Encoding encoding = Encoding.Default;
+
+        //Backup is optional, but suggested!
+        bool backups = true;
+
+        string path = &quot;C:/Rappelz/Client/data.000&quot;;
+
+        Core core = new Core(backups, encoding);
+
+        core.Load(path);
+
+        Console.WriteLine($&quot;{core.RowCount} entries loaded from {path}&quot;);
+
+        IndexEntry entry = core.GetEntry(&quot;db_string.rdb&quot;);
+
+        if (entry != null)
+            Console.WriteLine(&quot;db_string fetched successfully!&quot;);
+    }   
+}
+</code></pre>
+<h3 id="exporting-files">Exporting File'(s)</h3>
+<hr />
+<h4 id="single">Single</h4>
+<pre><code class="language-csharp">using System.Text;
+using DataCore;
+using DataCore.Structures;
+
+class Program()
+{
+    static void Main(string[] args)
+    {
+        //Encoding is optional, but suggested!
+        Encoding encoding = Encoding.Default;
+
+        //Backup is optional, but suggested!
+        bool backups = true;
+
+        string path = &quot;C://Rappelz//Client//data.000&quot;;
+
+        Core core = new Core(backups, encoding);
+
+        core.Load(path);
+
+        Console.WriteLine($&quot;{core.RowCount} entries loaded from {path}&quot;);
+
+        IndexEntry entry = core.GetEntry(&quot;db_string.rdb&quot;);
+
+        if (entry != null)
+        {
+            string buildDir = &quot;c://Rappelz//Output&quot;
+            core.ExportFileEntry(buildDir, entry);
+        }
+    }   
+}
+</code></pre>
+<h4 id="multiple">Multiple</h4>
+<pre><code class="language-csharp">using System.Text;
+using DataCore;
+using DataCore.Structures;
+
+class Program()
+{
+    static void Main(string[] args)
+    {
+        //Encoding is optional, but suggested!
+        Encoding encoding = Encoding.Default;
+
+        //Backup is optional, but suggested!
+        bool backups = true;
+
+        string path = &quot;C://Rappelz//Client//data.000&quot;;
+
+        Core core = new Core(backups, encoding);
+
+        core.Load(path);
+
+        Console.WriteLine($&quot;{core.RowCount} entries loaded from {path}&quot;);
+
+        string ext = &quot;jpg&quot;;
+
+        List&lt;IndexEntry&gt; entries = core.GetEntriesByExtension(ext);
+
+        if (entries.Count &gt; 0)
+        {
+            string buildDir = &quot;c://Rappelz//Output&quot;
+            core.ExportExtEntries(buildDir, entries);
+        }
+    }   
+}
+</code></pre>
+<h2 id="special-thanks">Special Thanks</h2>
+<hr />
+<ul>
+<li>xXExiledXx</li>
+<li>Glandu2</li>
+<li>Gangor</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

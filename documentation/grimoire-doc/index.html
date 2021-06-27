@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="http://openrz.org/documentation/grimoire-doc/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Grimoire Documentation - OpenRZ</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Grimoire Documentation";
+    var mkdocs_page_input_path = "documentation\\grimoire-doc.md";
+    var mkdocs_page_url = "/documentation/grimoire-doc/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> OpenRZ</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/">Guides</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../releases/">Releases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="https://discord.gg/6rxB56w5x5">Discord</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../credits_thanks/">Credits/Thanks</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">OpenRZ</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Grimoire Documentation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="grimoire-documentation">Grimoire Documentation</h1>
+<hr />
+<h2 id="first-use">First Use</h2>
+<p>It is recommended that users configure Grimoire when running it for the first time, this can be done via opening <code>Config.json</code> in your preferred editor or by clicking the <code>Settings</code> button in the tool itself. Below you will find a handy reference of the settings.</p>
+<h2 id="settings">Settings</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Category</th>
+<th>Description</th>
+<th>Value-Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BuildDirectory</td>
+<td>Grim</td>
+<td>Directory where files created by Grimoire will be written to</td>
+<td>string</td>
+</tr>
+<tr>
+<td>DumpDirectory</td>
+<td>Grim</td>
+<td>Directory where utilities like SPR Generator and Dump Updater can find a premade <code>/dump/</code></td>
+<td>string</td>
+</tr>
+<tr>
+<td>Codepage</td>
+<td>Grim</td>
+<td>Encoding used in some functionality</td>
+<td>int</td>
+</tr>
+<tr>
+<td>Styles</td>
+<td>Tab</td>
+<td>Styles to be listed in the New: tab list</td>
+<td>string[]</td>
+</tr>
+<tr>
+<td>DefaultStyle</td>
+<td>Tab</td>
+<td>Style to be loaded on-start (if any, elsewise use "NONE")</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Engine</td>
+<td>DB</td>
+<td>Type of database engine to be used (0 = MsSQL, 1 = MySQL)</td>
+<td>int</td>
+</tr>
+<tr>
+<td>IP</td>
+<td>DB</td>
+<td>Target machine to connect to for SQL operations.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Port</td>
+<td>DB</td>
+<td>Target machine port to connections related to SQL operations.</td>
+<td>int</td>
+</tr>
+<tr>
+<td>Trusted</td>
+<td>DB</td>
+<td>If true Grimoire will attempt to make trusted connections on the SA account for MsSQL connections. Note: this will only work when your SQL instance is installed as a default instance with Mixed Mode Authentication enabled on your LOCAL network.</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>WorldName</td>
+<td>DB</td>
+<td>Name of the Arcadia database.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>WorldUser</td>
+<td>DB</td>
+<td>Username for the Arcadia database. (Leave blank if using Trusted)</td>
+<td>string</td>
+</tr>
+<tr>
+<td>WorldPass</td>
+<td>DB</td>
+<td>Password for the user of the Arcadia database. (Leave blank if using Trusted)</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Backup</td>
+<td>DB</td>
+<td>If true, tables will be backed up via scripting before changes are made to them</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>DropOnExport</td>
+<td>DB</td>
+<td>If true, tables will be dropped via the drop statement during save operations.</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td>DB</td>
+<td>The amount of time that can elapse before SQL operations will timeout.</td>
+<td>int</td>
+</tr>
+<tr>
+<td>Struct_AutoLoad</td>
+<td>RDB</td>
+<td>Not implemented!</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>Directory</td>
+<td>RDB</td>
+<td>Directory where structures can be located. (/structures by default)</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>Encoding</td>
+<td>RDB</td>
+<td>Encoding to be used in rdb related operations. Note: this must match a name on the list of encoding for RDB tabs.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>LoadDirectory</td>
+<td>RDB</td>
+<td>Default directory to be used in .rdb load/save operations.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>AppendASCII</td>
+<td>RDB</td>
+<td>If true, (ascii) will be appended to the names of files being written to disk.</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>SaveHashed</td>
+<td>RDB</td>
+<td>If true, file names will be converted/hashed during save operations.</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>CSV_Directory</td>
+<td>RDB</td>
+<td>Directory where .csv will be created.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>SQL_Directory</td>
+<td>RDB</td>
+<td>Not implemented.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>LoadDirectory</td>
+<td>Data</td>
+<td>Default directory be used in data.000 load/save operations.</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Encoding</td>
+<td>Data</td>
+<td>Encoding used in data.xxx operations</td>
+<td>int</td>
+</tr>
+<tr>
+<td>Backup</td>
+<td>Data</td>
+<td>If true, data.xxx files will be backed up before being changed by Grimoire</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>UseModifiedXOR</td>
+<td>Data</td>
+<td>If true, DataCore will use the provided ModifiedXORKey in operations</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>ModifiedXORKey</td>
+<td>Data</td>
+<td>Key to be used in DataCore operations if UseModifiedXOR is set to true</td>
+<td>int[] (array)</td>
+</tr>
+<tr>
+<td>ClearOnCreate</td>
+<td>Data</td>
+<td>If true, newly created data.000 will not be loaded and displayed</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>AutoClear</td>
+<td>Hash</td>
+<td>If true, the hash grid will be cleared after a conversion occurs.</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>AutoConvert</td>
+<td>Hash</td>
+<td>If true, files added to the hash grid will be automatically hashed.</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>Hash</td>
+<td>Do not change this!</td>
+<td>int</td>
+</tr>
+<tr>
+<td>Directory</td>
+<td>Log</td>
+<td>Directory where new log files will be written</td>
+<td>string</td>
+</tr>
+<tr>
+<td>DisplayLevel</td>
+<td>Log</td>
+<td>Not Implemented!</td>
+<td>int</td>
+</tr>
+<tr>
+<td>WriteLevel</td>
+<td>Log</td>
+<td>Not Implemented!</td>
+<td>int</td>
+</tr>
+<tr>
+<td>RefreshInterval</td>
+<td>Log</td>
+<td>Time (in seconds) before the log manager will refresh the displayed logged entries.</td>
+<td>int</td>
+</tr>
+<tr>
+<td>SaveOnExit</td>
+<td>Log</td>
+<td>If true, logs will be written to disk during the exit operation.</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>Directory</td>
+<td>Flag</td>
+<td>Directory where flag list .txt are loaded from</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Default</td>
+<td>Flag</td>
+<td>Name (without extension) of the default flag list .txt</td>
+<td>string</td>
+</tr>
+<tr>
+<td>ClearOnChange</td>
+<td>Flag</td>
+<td>If true, when flag lists are changed all selected flags will be unselected.</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>OverwriteExisting</td>
+<td>DumpUpdater</td>
+<td>If true, files in the target dump directory will be automatically ovewritten during an update operation</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>IgnoreSize</td>
+<td>SPR</td>
+<td>If true, the spr generator will not warn/delete of icons with a size different than expected</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>ShowWarnings</td>
+<td>SPR</td>
+<td>If true, the spr generator will show warnings about icons that could not be validated and have been removed</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>ShowIgnored</td>
+<td>SPR</td>
+<td>If true, the spr generator will show a list of all ignored (unvalidated) icon files after a generate operation</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>Directory</td>
+<td>Localization</td>
+<td>Directory where localization .xml are located</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Locale</td>
+<td>Localization</td>
+<td>Name (without extension) of the target locale .xml</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<h2 id="using-data-utility">Using Data Utility</h2>
+<hr />
+<p><em>Most of the instructions below assume you have an open and properly configured instance of Grimoire</em></p>
+<h3 id="opening-the-rappelz-file-index-data000">Opening the Rappelz file index (data.000)</h3>
+<p>The data.000 can be opened in a couple ways:</p>
+<ol>
+<li>Click the Load button</li>
+<li>In Windows Explorer locate the desired data.000 and drag it on-top of the data tab.</li>
+<li>Press the <code>CTRL + O</code> key combination</li>
+</ol>
+<h3 id="creating-new-dataxxx">Creating new data.xxx</h3>
+<p><em>(Please note new data files will be created in the output folder, if backups is toggled than any existing data.xxx in this directory will be preserved, otherwise they will be overwritten)</em></p>
+<ol>
+<li>Open a new <code>Data</code> tab</li>
+<li>Click <code>New</code>or press the <code>CTRL + N</code> key combination</li>
+<li>Select the folder containing a <code>dump</code> <ol>
+<li>The folder should contain files categorized by the extension</li>
+<li>e.g. <code>cob/dds/jpg</code> etc</li>
+<li>Any files out of place will cause <code>File Not Found</code> exceptions. <em>(e.g. a <code>.nfe</code> file located in the /nfm/ directory!)</em></li>
+</ol>
+</li>
+<li>Wait til complete!</li>
+</ol>
+<h3 id="rebuild-shrink-client-dataxxx">Rebuild / Shrink client data.xxx</h3>
+<ol>
+<li>Open new <code>Data</code> tab</li>
+<li>Open a data.000 index</li>
+<li>Click <code>Rebuild</code> or press the <code>CTRL + R</code> key combination</li>
+<li>Follow steps of the rebuild wizard</li>
+</ol>
+<h3 id="exporting-files">Exporting Files</h3>
+<ol>
+<li>Right click <code>All</code> in the extensions list and click <code>Export</code></li>
+</ol>
+<p>or</p>
+<ol>
+<li>Locate the specific extension you want to export and right click it and click <code>Export</code></li>
+</ol>
+<p>or</p>
+<ol>
+<li>Search for or otherwise scroll to and select (you may select more than 1) then right click after selecting desired files and click <code>Export</code></li>
+</ol>
+<h3 id="comparing-files">Comparing files</h3>
+<ol>
+<li>Search for or scroll to the desired file</li>
+<li>Right click the file grid and click <code>Compare</code></li>
+</ol>
+<p><strong>!!! It should be noted, this currently will not function for rdb due to the header date changing! !!!</strong></p>
+<h3 id="insertingdeleting-files">Inserting/Deleting files</h3>
+<ol>
+<li>Search for or scroll to the desired file (for delete)</li>
+<li>Right click the grid and select Insert/Delete</li>
+<li>Follow prompts</li>
+</ol>
+<p><strong>You can also simply drag new files (to be inserted) directly onto a loaded data index</strong></p>
+<h2 id="using-rdb-utility">Using RDB Utility</h2>
+<hr />
+<p><em>Most of the instructions below assume you have an open and properly configured instance of Grimoire</em></p>
+<h3 id="opening-rdb">Opening RDB</h3>
+<p>RDB data can be loaded in multiple ways:</p>
+<ol>
+<li>Click the <code>Load</code> button</li>
+<li>Click the <code>File</code> button and select the desired .rdb</li>
+</ol>
+<p>or</p>
+<ol>
+<li>Locate the .rdb in in Windows Explorer</li>
+<li>Drag it onto a clean .rdb tab</li>
+</ol>
+<p>or</p>
+<ol>
+<li>Press <code>CTRL + O</code> to open File Dialogue</li>
+<li>Select the desired .rdb</li>
+</ol>
+<p>or</p>
+<ol>
+<li>Locate client directory containing desired .rdb</li>
+<li>Load the index (data.000) in the same way a normal rdb would be loaded</li>
+<li>Select the desired RDB from the list of selectable rdb (contained in this client)</li>
+</ol>
+<p>or</p>
+<ol>
+<li>Click the <code>Load</code> button</li>
+<li>Click the <code>SQL</code> button</li>
+</ol>
+<h3 id="saving-rdb">Saving RDB</h3>
+<p>Before saving you should make sure you have (ascii) / encrypted (buttons on the toolbar of the rdb tab) are set properly.</p>
+<ol>
+<li>Click the <code>Save</code> button</li>
+<li>Hover mouse over <code>File</code></li>
+<li>Select appropriate type to save as. </li>
+</ol>
+<p>or</p>
+<ol>
+<li>Press the <code>CTRL + S</code> key combination</li>
+</ol>
+<h3 id="searching">Searching</h3>
+<p>To find a specific value in a specific field, simply press <code>CTRL + F</code>. Select the desired field and enter the desired value to be matched, then press OK. If the value exists, it will be automatically selected.</p>
+<h3 id="sorting">Sorting</h3>
+<p>Click the column header to sort, clicking it again will reverse the sort order.</p>
+<h3 id="editing-bit-flags">Editing Bit Flags</h3>
+<p>Grimoire has the ability to launch the Bit Flag Utility from within an rdb tab instance, to enable this simply see the example given in the ItemResource72.lua (structure)</p>
+<pre><code class="language-lua">{&quot;item_use_flag&quot;, INT32, flag=BIT_FLAG, opt={ &quot;use_flags_under_81&quot; }},
+</code></pre>
+<p>The bit flag utility accepts any 4 byte integer as a value, so if you have a field such as the "item_use_flag" who has the fieldtype "INT32" you can add the flag "BIT_FLAG" to it, this specifies that when you right click on this field in a loaded RDB tab, you can then click "Open w/ Flag Editor"</p>
+<p>You can go further than this by specifying the opt variable and giving it the name of the default flag list (.txt) we want to be loaded to process the value in the current cell.</p>
+<h2 id="using-hash-utility">Using Hash Utility</h2>
+<hr />
+<p><em>You should make sure you have properly configured the Hash Utility related settings</em></p>
+<h3 id="single-name-real-time-hashing">Single Name (Real Time) Hashing</h3>
+<ol>
+<li>Locate the 'Instant' group of controls. (Upper left hand corner of the tab)</li>
+<li>Enter a plain-text or hashed name</li>
+</ol>
+<p>The opposite will be generated in the 'Output' textbox. <em>(You can also use the flip button to flip the results)</em></p>
+<h3 id="multiple-file-hashing">Multiple File Hashing</h3>
+<p>You can load files to be converted into the Hash Utility in multiple ways:</p>
+<ol>
+<li>Locate the file'(s) in Windows Explorer</li>
+<li>Select the file'(s) and drag them onto the 'Multi-File' grid</li>
+<li>(If 'Auto-Convert' is not enabled) Right click the grid and hover over 'Convert'</li>
+<li>Click <code>All</code></li>
+</ol>
+<p>or</p>
+<ol>
+<li>Locate the folder containing files to be hashed in Windows Explorerer</li>
+<li>Drag the folder onto the <code>Multi-File</code> grid</li>
+<li>(If 'Auto-Convert' is not enabled) Right click the grid and hover over <code>Convert</code></li>
+<li>Click <code>All</code></li>
+</ol>
+<h3 id="addremove-ascii">Add/Remove (ascii)</h3>
+<p>During the name conversion (hashing) process, you can append (ascii) to all files being convert by simply enabling the 'Append (ascii)' radio button in the 'Name Options' groupbox.</p>
+<h2 id="using-bit-flag-editor">Using Bit Flag Editor</h2>
+<hr />
+<ol>
+<li>Open the Bit Flag Editor from the <code>Utilities</code> menu</li>
+<li>Select the desired flag list
+3 Modify flag selection as desired<ol>
+<li>Copy output</li>
+<li>Paste flag into the <code>Input/Output</code> text box to decode</li>
+</ol>
+</li>
+</ol>
+<h2 id="using-dump-updater">Using Dump Updater</h2>
+<hr />
+<p><em>(Make sure that you have configured settings related to this utility before use!)</em></p>
+<ol>
+<li>Open the Dump Updater from the <code>Utilities</code> menu<ol>
+<li>Verify the <code>Dump Directory</code> is the desired directory</li>
+</ol>
+</li>
+<li>Drag-N-Drop Folder <em>(or files)</em> onto the utility<ol>
+<li>Check the listed files and remove any unwanted/accidental additions</li>
+</ol>
+</li>
+<li>Click <code>Copy</code> then confirm you want to start the process!</li>
+</ol>
+<h1 id="using-spr-generator">Using SPR Generator</h1>
+<hr />
+<ol>
+<li>Open the SPR Generator from the <code>Utilities</code> menu</li>
+<li>Select the type of SPR you want to generate</li>
+<li>Click <code>Generate</code></li>
+</ol>
+<p><em>(The utility will compare item/skill/state icon listings in the database to the dump directory listed in your settings to determine if a matching icon actually exists. If a matching icon is not found the icon will not be listed in the generated spr!)</em></p>
+<h1 id="using-xor-editor">Using XOR Editor</h1>
+<hr />
+<ol>
+<li>Open the XOR Editor from the <code>Utilities</code> menu</li>
+<li>Load XOR Key<ol>
+<li>You can load the <code>Default</code> key, a key stored in a <code>key file</code> or the key stored in your <code>Config.json</code> if applicable</li>
+</ol>
+</li>
+<li>Edit the key as desired<ol>
+<li>The <code>unResourceEncodeKey</code> is updated in real time</li>
+<li>If generating a new key for the sframe, you can right click the hex editor and click <code>Copy</code> and simply paste the copied output into the <code>XORen.cpp::szResourceEncodeKey</code> <em>(do the same for the <code>unResourceEncodeKey</code>)</em></li>
+</ol>
+</li>
+<li>Save the key<ol>
+<li>You can save the key directly to the <code>Config.json</code> as-well as a <code>key file</code> <em>(which can be shared with developers on your team)</em></li>
+<li>Generated <code>key files</code> do not automatically save into the <code>Config.json</code>!!! <em>(This goes for loading them as-well!)</em></li>
+</ol>
+</li>
+</ol>
+<h1 id="using-modified-xor-key">Using Modified XOR Key</h1>
+<hr />
+<p>If you have modified the <code>szResourceEncodeKey</code> / <code>unResourceEncodeKey</code> of your <code>SFrame.exe</code> <code>XORen.cpp</code> you will need to provide this modified key to Grimoire in order to create and load custom data.xxx files. </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

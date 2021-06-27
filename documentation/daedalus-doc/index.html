@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="http://openrz.org/documentation/daedalus-doc/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Daedalus Documentation - OpenRZ</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Daedalus Documentation";
+    var mkdocs_page_input_path = "documentation\\daedalus-doc.md";
+    var mkdocs_page_url = "/documentation/daedalus-doc/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> OpenRZ</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../guides/">Guides</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../releases/">Releases</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="https://discord.gg/6rxB56w5x5">Discord</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../credits_thanks/">Credits/Thanks</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">OpenRZ</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Daedalus Documentation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="daedalus-documentation">Daedalus Documentation</h1>
+<h2 id="override-list">Override List</h2>
+<hr />
+<p>Overrides are LUA variables that can be defined to change Daedalus behaviours during loading/saving operations.</p>
+<p>Overrides:</p>
+<ul>
+<li>header <Defining a header will cause the engine to use this definition to process the file header instead of the normal .rdb header format></li>
+<li>specialCase <Defining a special case will fundamentally change the behaviour of the engine! See example: [DBSKLTR]></li>
+<li>sqlColumns <Defining this table of names will tell the Database engine in Daedalus to read/write ONLY these columns
+instead of using the columns defined in 'fields'></li>
+<li>selectStatement <Defining this will over-ride the Database engines select generation methods></li>
+</ul>
+<h2 id="field-types">Field Types</h2>
+<hr />
+<ul>
+<li><em>The FIELDTYPE identifier must </em><em>ALWAYS</em><em> be </em><em>ALL CAPS</em><em> and any typos will result in program errors</em></li>
+<li><em>len is types length in bytes</em></li>
+<li><em>all fieldtypes can present a <code>default</code> value.</em></li>
+<li><em>all fieldtypes can set their own <code>show</code> (visibility) Can be 0 or 1</em></li>
+<li><em>all fieldtypes can present a <code>flag</code>, advanced use!</em></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Len</th>
+<th>Args</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BYTE</code></td>
+<td>1</td>
+<td><code>int</code> length</td>
+<td>Reads <code>1</code> byte from the stream, otherwise reads <code>length</code> bytes from the stream. <em>(reading multiple bytes is generally used for padding</em>)</td>
+</tr>
+<tr>
+<td><code>BIT_VECTOR</code></td>
+<td>4</td>
+<td>n/a</td>
+<td>Reads <code>4</code> bytes from the stream into a <code>BitVector32</code> for per bit processing.</td>
+</tr>
+<tr>
+<td><code>BIT_FROM_VECTOR</code></td>
+<td>n/a</td>
+<td><code>int</code> bit_position, <code>string</code> dependency</td>
+<td>This fieldtype is not read from the stream, the value is obtained by reading the <code>n</code> bit of the value stored by <code>dependency</code>. <em>(must be an <code>int</code>)</em></td>
+</tr>
+<tr>
+<td><code>INT16/SHORT</code></td>
+<td>2</td>
+<td>n/a</td>
+<td>Reads <code>2</code>bytes from the stream as an <code>short</code></td>
+</tr>
+<tr>
+<td><code>UINT16/USHORT</code></td>
+<td>2</td>
+<td>n/a</td>
+<td>Reads <code>2</code> bytes from the stream as an <code>ushort</code></td>
+</tr>
+<tr>
+<td><code>INT32/INT</code></td>
+<td>4</td>
+<td>n/a</td>
+<td>Reads <code>4</code> bytes from the stream as an <code>int</code></td>
+</tr>
+<tr>
+<td><code>UINT32/UINT</code></td>
+<td>4</td>
+<td>n/a</td>
+<td>Reads <code>4</code> bytes from the stream as an <code>uint</code></td>
+</tr>
+<tr>
+<td><code>INT64/LONG</code></td>
+<td>4</td>
+<td>n/a</td>
+<td>Reads <code>8</code> bytes from the stream as an <code>long</code></td>
+</tr>
+<tr>
+<td><code>UINT64/ULONG</code></td>
+<td>4</td>
+<td>n/a</td>
+<td>Reads <code>8</code> bytes from the stream as an <code>ulong</code></td>
+</tr>
+<tr>
+<td><code>SINGLE</code></td>
+<td>4</td>
+<td>n/a</td>
+<td>Reads <code>4</code> bytes from the stream as an <code>single</code></td>
+</tr>
+<tr>
+<td><code>FLOAT</code></td>
+<td>4</td>
+<td>n/a</td>
+<td>Reads <code>4</code> bytes from the stream as an <code>single</code></td>
+</tr>
+<tr>
+<td><code>DOUBLE</code></td>
+<td>8</td>
+<td>n/a</td>
+<td>Reads <code>8</code> bytes from the stream as an <code>double</code></td>
+</tr>
+<tr>
+<td><code>FLOAT64</code></td>
+<td>8</td>
+<td>n/a</td>
+<td>Reads <code>8</code> bytes from the stream as an <code>double</code></td>
+</tr>
+<tr>
+<td><code>DECIMAL</code></td>
+<td>4</td>
+<td>n/a</td>
+<td>Reads <code>4</code> bytes from the stream as an <code>decimal</code></td>
+</tr>
+<tr>
+<td><code>DATETIME</code></td>
+<td>4</td>
+<td>n/a</td>
+<td>Reads <code>4</code> bytes from the stream as an <code>int</code> <em>(seconds since epoch)</em> which is stored as an <code>DateTime</code></td>
+</tr>
+<tr>
+<td><code>SID</code></td>
+<td>n/a</td>
+<td>n/a</td>
+<td>This <code>fieldtype</code> is not read from the stream, the value starts at <code>1</code> and is incremented for every row read from the rdb.</td>
+</tr>
+<tr>
+<td><code>STRING</code></td>
+<td>n/a</td>
+<td><code>int</code> length</td>
+<td>Reads <code>length</code> bytes from the stream and encodes them into a string according to currently selected <code>Encoding</code></td>
+</tr>
+<tr>
+<td><code>STRING_LEN</code></td>
+<td>4</td>
+<td>n/a</td>
+<td>This <code>fieldtype</code> reads a <code>4</code> byte <code>int</code> from the stream and is later used to provide the length for a <code>STRING_BY_LEN</code> cell.</td>
+</tr>
+<tr>
+<td><code>STRING_BY_LEN</code></td>
+<td>n/a</td>
+<td><code>string</code> dependency</td>
+<td>This field type gets its length from a previously defined <code>STRING_LEN</code> cell by the name of <code>dependency</code> and is then read and encoded according to currently selected <code>Encoding</code></td>
+</tr>
+<tr>
+<td><code>STRING_BY_REF</code></td>
+<td>n/a</td>
+<td><code>string</code> dependency</td>
+<td>This field type gets its length from a header cell of type <code>int</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dependency Note:</strong></p>
+<ul>
+<li>Usage: <code>{ "fieldName", STRING_BY_REF, dependency="headerFieldName" }</code></li>
+<li>Description:<ul>
+<li>Fields marked with a dependency means they rely on another field</li>
+</ul>
+</li>
+</ul>
+<p><strong>Possible Flags:</strong></p>
+<ul>
+<li><code>ROWCOUNT</code> <em>(used in header definition to denote engine loop count)</em></li>
+<li><code>LOOPCOUNTER</code> <em>(used in specialCase=DOUBLELOOP files)</em></li>
+</ul>
+<h2 id="defining-field-lists">Defining Field Lists</h2>
+<hr />
+<p>There are two types of lists that can be defined in a structure.lua, those are:
+- header <em>(All fields in this list will be used to process a files header)</em>
+- fields <em>(All fields in this list will be used to process a files contents)</em></p>
+<h3 id="defining-header">Defining Header</h3>
+<hr />
+<p>Normally the header of any given .rdb is as follows:</p>
+<ul>
+<li>Date <code>8 bytes</code></li>
+<li>Blank <code>120 bytes</code></li>
+<li>Row Count <code>4 bytes</code></li>
+</ul>
+<p><strong>In this case, you will simply NOT define a header!</strong></p>
+<p>However in special cases (e.g. <code>.ref</code> files) the header is different, which will cause an issue with Deadalus reading this file, to fix this we can now simply script our header by defining a field list as we would below, but giving it the name <code>header</code>. See the example below:</p>
+<p>The <code>header</code> list is a lua table containing tables of information</p>
+<pre><code class="language-lua">header =
+{
+    { &quot;rows&quot;, INT32, flag=ROWCOUNT }, -- flag=ROWCOUNT identifies that the engine will loop on the INT value stored in &quot;rows&quot;
+    { &quot;strLen&quot;, INT32, default=52 } -- Holds the length of fields.string
+}
+</code></pre>
+<p>Notice that in the case of <code>db_item.ref</code>, this file does not have the date/blank areas but instead contains two <code>INT32</code> fields, one of which would define the row count as a normal header. In order for the engine to work properly we must inform it that the "rows" field contains the row count by giving it the variable <code>flag</code> with the value <code>ROWCOUNT</code></p>
+<h3 id="defining-basic-fields">Defining Basic Fields</h3>
+<hr />
+<p>The <code>fields</code> list is a lua table containing tables of information</p>
+<pre><code class="language-lua">fields =
+{
+    { &quot;fieldName&quot;, FIELDTYPE },
+    { &quot;fieldName&quot;, FIELDTYPE }
+}
+</code></pre>
+<ul>
+<li><code>fieldName</code> is a string which will be used as an identifier when the rdb data is displayed in the calling tool</li>
+<li><code>FIELDTYPE</code> is an identifier that determines how many bytes will be read on the particular field while processing the rdb.</li>
+</ul>
+<h2 id="defining-complex-fields">Defining Complex Fields</h2>
+<hr />
+<p>While some rdb have easily definable fields some need extra information to process correctly, refer to the examples below.</p>
+<h3 id="db_string">db_string</h3>
+<hr />
+<p><code>db_string</code> structure example:</p>
+<pre><code class="language-lua">fields =
+{
+    { &quot;name&quot;, STRING_LEN },
+    { &quot;value&quot;, STRING_LEN },
+    { &quot;name&quot;, STRING_BY_LEN },
+    { &quot;value&quot;, STRING_BY_LEN },
+    { &quot;code&quot;, INT32 },
+    { &quot;group_id&quot;, INT32 },
+    { &quot;unknown&quot;, BYTE, length=16, default=0, show=0 }
+}
+</code></pre>
+<p>As you can see above we make use of the <code>STRING_LEN</code>/<code>STRING_BY_LEN</code> fieldtypes's but we also need to process 'useless' data in order to read the rdb properly. So we define the 'unknown' field.</p>
+<p>Sometimes we need to process data that we don't want to show, in this case we will use the <code>show</code> variable and set it to <code>0</code></p>
+<p>In this particular case we need to read a specific amount of bytes to properly process the 'unknown' field, while this could be done as:</p>
+<pre><code class="language-lua">fields =
+{
+    { &quot;unknown1&quot;, INT32 },
+    { &quot;unknown2&quot;, INT32 },
+    { &quot;unknown3&quot;, INT32 },
+    { &quot;unknown4&quot;, INT32 },
+}
+</code></pre>
+<p>it is accomplished much easier by using the fieldtype <code>BYTE</code> and defining the <code>length</code> variable as <code>16</code> </p>
+<p>In this particular case we also define the <code>default</code> variable, this variable is used when saving an rdb. For instance, had we loaded this
+rdb's information from an SQL table we have no proper way of knowing what to place in this area of useless data. Thusly, if we already know
+there is no information here we can provide a default value of <code>0</code>. </p>
+<p><strong>NOTE: FIELDTYPE:<code>STRING</code> can also have a default string value!</strong></p>
+<h3 id="db_itemdb_monster">db_item/db_monster</h3>
+<hr />
+<p>There are however even more complex field definitions required by some rdb, in the next instance we will look at using the fieldtype <code>BIT_VECTOR</code>
+and <code>BIT_FROM_VECTOR</code> as they are used in <code>db_item</code>/<code>db_monster</code></p>
+<p>In <code>db_item</code> there are <code>limit_*</code> fields such as <code>limit_deva</code>, <code>limit_gaia</code>, <code>limit_asura</code> which limit the ability of races or classes to use that specific item. See the example below:</p>
+<pre><code class="language-lua">fields =
+{
+    {&quot;limit_bits&quot;, BIT_VECTOR, show=0 },
+    {&quot;limit_deva&quot;, BIT_FROM_VECTOR, dependency=&quot;limit_bits&quot;, bit_position=2},
+    {&quot;limit_asura&quot;, BIT_FROM_VECTOR, dependency=&quot;limit_bits&quot;, bit_position=3},
+    {&quot;limit_gaia&quot;, BIT_FROM_VECTOR, dependency=&quot;limit_bits&quot;, bit_position=4},
+    {&quot;limit_fighter&quot;, BIT_FROM_VECTOR, dependency=&quot;limit_bits&quot;, bit_position=10},
+    {&quot;limit_hunter&quot;, BIT_FROM_VECTOR, dependency=&quot;limit_bits&quot;, bit_position=11},
+    {&quot;limit_magician&quot;, BIT_FROM_VECTOR, dependency=&quot;limit_bits&quot;, bit_position=12},
+    {&quot;limit_summoner&quot;, BIT_FROM_VECTOR, dependency=&quot;limit_bits&quot;, bit_position=13}
+}
+</code></pre>
+<p>In this particular instance we will be reading an <code>INT</code> from the physical rdb and converting it into individual values, in c++ this would be done by reading the individual bits of this section of the rdb. Unfortunately this can not be accomplished in that manner in c#, so we read the <code>INT</code> and convert it into a <code>BitVector32</code> which we can then read by position.</p>
+<p>So in the above example we read the <code>INT</code> <code>{ "limit_bits" }</code> and convert it into a <code>BitVector32</code> by giving this cell the fieldtype <code>BIT_VECTOR</code>, the fields with the variable <code>dependency</code> of the same name <code>limit_bits</code> are not physically read from the rdb but are generated from the <code>limit_bits</code> field by reading the bit at the position given by the <code>bit_position</code> variable.</p>
+<p>So in the above example <code>limit_magician</code> will generate it's value by reading the bit at position <code>12</code> in the <code>limit_bits</code> fields.</p>
+<p>Another unique configuration of fields in <code>db_item</code> is repeated or duplicated fields such as <code>item_use_flag</code> which appears twice in a row in this rdb. </p>
+<p>See the example below:</p>
+<p><strong>Example 1:</strong></p>
+<pre><code class="language-lua">fields =
+{
+    {&quot;item_use_flag&quot;, INT32},
+    {&quot;item_use_flag&quot;, INT32, show=0} -- Use the same name so engine will copy shown value
+}
+</code></pre>
+<p>If we were to load the physical rdb in this case we could define it like so:</p>
+<p><strong>Example 2:</strong></p>
+<pre><code class="language-lua">fields =
+{
+    {&quot;item_use_flag&quot;, INT32},
+    {&quot;item_use_flag2&quot;, INT32 }
+}
+</code></pre>
+<p>and all would be good, unfortunately if we use the above structure and attempt to load the data from the ItemResource sql table we will be prompted by a <code>column does not exist</code> error. In this instance we can either simply use the engines duplicated field feature by defining the structure like in <code>Example 1</code>, which will automatically give the field with the variable <code>show</code> set to <code>0</code> the same value as the shown field.</p>
+<p>Or we can go a little more complex by defining the value in a special LUA variable called <code>selectStatement</code>, in this case you would simply define the value as part of the sql statement like below:</p>
+<pre><code class="language-lua">selectStatement = &quot;SELECT item_use_flag, item_use_flag as item_use_flag2 FROM dbo.ItemResource&quot;
+</code></pre>
+<h3 id="db_skilltree">db_skilltree</h3>
+<hr />
+<p>In the case of <code>db_skilltree</code> we can not read this rdb as we would the others, this is because unlike other rdb who use a single read loop based on a variable called the row count <em>(which is part of the file header)</em> this particular rdb uses a double read loop, where its initial loop is based off the count in the header and then a secondary count based off a field in the rdb itself.</p>
+<p>Consider the below structure example:</p>
+<pre><code class="language-lua">specialCase = DOUBLELOOP
+
+fields =
+{
+    { &quot;job_id&quot;, INT32, flag=LOOPCOUNTER },
+    { &quot;skill_id&quot;, INT32 },
+    { &quot;min_skill_lv&quot;, INT32 },
+    { &quot;max_skill_lv&quot;, INT32 },
+    { &quot;lv&quot;, INT32 },
+    { &quot;job_lv&quot;, INT32 },
+    { &quot;jp_ratio&quot;, SINGLE },
+    { &quot;need_skill_id_1&quot;, INT32 },
+    { &quot;need_skill_lv_1&quot;, INT32 },
+    { &quot;need_skill_id_2&quot;, INT32 },
+    { &quot;need_skill_lv_2&quot;, INT32 },
+    { &quot;need_skill_id_3&quot;, INT32 },
+    { &quot;need_skill_lv_3&quot;, INT32 },
+    { &quot;cenhance_min&quot;, INT32 },
+    { &quot;cenhance_max&quot;, INT32 }
+}
+</code></pre>
+<p>In this rdb structure first and foremost we need to alert the engine to the fact that this particular rdb is a special case, we will do this by defining the LUA variable <code>specialCase</code> In this instance our special case will be <code>DOUBLELOOP</code>. Once this has been defined the engine will attempt to do a secondary loop during its initial read loop, this however requires the engine know which field it will be using as the count for the secondary loop. This is where the <code>flag</code> variable will come into use. By defining the <code>flag</code> variable as <code>LOOPCOUNTER</code>. You are not only telling the engine to use this field during the read process but also to count the amount of rows in loaded data that have the same <code>job_id</code> or <code>flag=LOOPCOUNTER</code> so that it can write this count back down when you are saving this particular file.</p>
+<p><strong>NOTE: at this time there is only one specialCase and it is DOUBLELOOP</strong></p>
+<h3 id="using-lua-processrow">Using LUA ProcessRow</h3>
+<hr />
+<p>In the case of <code>db_monster</code> we finally have to do some row processing with our trusty <code>ProcessRow</code> function, in the case of this particular rdb the id field has had it's bits scrambled when it was written. This means if you just load the rdb as normal you will not get the proper id. In order to counteract this we will need to perform some bitwise operations on this field for each row as they are loaded. For such cases Daedalus already has a built in feature. Simply define the <code>ProcessRow</code> function.</p>
+<p>Consider the below example:</p>
+<pre><code class="language-lua">local encodeMap = {}
+local decodeMap = {}
+
+function compute_bit_swapping()
+
+    local j, oldValue
+
+    for i = 0,31 do
+        encodeMap[i] = i;
+    end
+
+    j = 3
+    for i = 0,31 do
+        oldValue = encodeMap[i]
+        encodeMap[i] = encodeMap[j]
+        encodeMap[j] = oldValue
+        j = (j + i + 3) % 32
+    end
+
+    for i = 0,31 do
+        decodeMap[encodeMap[i]] = i
+    end
+end
+
+compute_bit_swapping()
+
+ProcessRow = function (mode, row, rowNum)
+
+    local value = row[&quot;id&quot;]
+    local result = 0
+
+    if mode == READ then
+        for i = 0,31 do
+            if bit32.band(bit32.lshift(1, i), value) ~= 0 then
+            result = bit32.bor(result, (bit32.lshift(1, decodeMap[i])))
+        end
+    end
+    elseif mode == WRITE then
+        for i = 0,31 do
+            if bit32.band(bit32.lshift(1, i), value) ~= 0 then
+            result = bit32.bor(result, (bit32.lshift(1, encodeMap[i])))
+            end
+        end
+    end
+
+    row[&quot;id&quot;] = result
+end
+</code></pre>
+<p><strong>Notes:</strong></p>
+<ul>
+<li><strong>The <code>ProcessRow</code> function must always present the following arguments <code>(mode, row, rowNum)</code></strong></li>
+<li><strong>Any function call like <code>compute_bit_swapping()</code> will occur automatically and doesn't need to be called manually within <code>ProcessRow</code></strong></li>
+<li><strong>If <code>ProcessRow</code> has been defined it will be called once per row <code>read</code>/<code>write</code> operation</strong></li>
+</ul>
+<p>In this above example we provide the encode/decode maps by defining the tables and computing the values they will hold by calling <code>compute_bit_swapping()</code> so when <code>ProcessRow</code> is called by the engine it will already have access to these variables. Now you can alter the current row being processed by <code>Daedalus</code> because it was passed into the <code>ProcessRow</code> function as the <code>row</code> argument.</p>
+<p>In this case we need to perform the bitwise operation on the field <code>id</code> so we define the local value as <code>row["id"]</code>, here you can use strongly typed names as the key or you can provide the oridinal value which in this case would be row[0]. Then at the end of this operation we set the <code>row["id"]</code> value to the newly decoded value and now we have the proper id when displayed.</p>
+<h1 id="sql">SQL</h1>
+<hr />
+<p>The last topic we will be covering is the proper usage of the LUA variables <code>sqlColumns</code> and <code>selectStatement</code></p>
+<p>These two variables should only ever be defined in the case that your provided structure (e.g. fields) can not result in a proper insert or select statement. For instance if you are selecting data which needs to be combined from two tables in the instance of <code>db_skill</code> or inserting data from a rdb whose epic or structure does not match the epic or structure of the target table.</p>
+<p>Example sqlColumns for db_npcresource (for 7.3):</p>
+<pre><code class="language-lua">-- To send rdb data to a database table of different epic you will need to define
+-- the sql table structure below, in this instance the data is going backwards to 7.2
+-- table. If you are sending information between matching epics, do not define sqlColumns
+sqlColumns =
+{
+    &quot;id&quot;,
+    &quot;text_id&quot;,
+    &quot;name_text_id&quot;,
+    &quot;race_id&quot;,
+    &quot;sexsual_id&quot;,
+    &quot;x&quot;,
+    &quot;y&quot;,
+    &quot;z&quot;,
+    &quot;face&quot;,
+    &quot;local_flag&quot;,
+    &quot;is_periodic&quot;,
+    &quot;begin_of_period&quot;,
+    &quot;end_of_period&quot;,
+    &quot;face_x&quot;,
+    &quot;face_y&quot;,
+    &quot;face_z&quot;,
+    &quot;model_file&quot;,
+    &quot;hair_id&quot;,
+    &quot;face_id&quot;,
+    &quot;body_id&quot;,
+    &quot;weapon_item_id&quot;,
+    &quot;shield_item_id&quot;,
+    &quot;clothes_item_id&quot;,
+    &quot;helm_item_id&quot;,
+    &quot;gloves_item_id&quot;,
+    &quot;boots_item_id&quot;,
+    &quot;belt_item_id&quot;,
+    &quot;mantle_item_id&quot;,
+    &quot;necklace_item_id&quot;,
+    &quot;earring_item_id&quot;,
+    &quot;ring1_item_id&quot;,
+    &quot;ring2_item_id&quot;,
+    &quot;motion_id&quot;,
+    &quot;is_roam&quot;,
+    &quot;roaming_id&quot;,
+    &quot;standard_walk_speed&quot;,
+    &quot;standard_run_speed&quot;,
+    &quot;walk_speed&quot;,
+    &quot;run_speed&quot;,
+    &quot;attackable&quot;,
+    &quot;offensive_type&quot;,
+    &quot;spawn_type&quot;,
+    &quot;chase_range&quot;,
+    &quot;regen_time&quot;,
+    &quot;level&quot;,
+    &quot;stat_id&quot;,
+    &quot;attack_range&quot;,
+    &quot;attack_speed_type&quot;,
+    &quot;hp&quot;,
+    &quot;mp&quot;,
+    &quot;attack_point&quot;,
+    &quot;magic_point&quot;,
+    &quot;defence&quot;,
+    &quot;magic_defence&quot;,
+    &quot;attack_speed&quot;,
+    &quot;magic_speed&quot;,
+    &quot;accuracy&quot;,
+    &quot;avoid&quot;,
+    &quot;magic_accuracy&quot;,
+    &quot;magic_avoid&quot;,
+    &quot;ai_script&quot;,
+    &quot;contact_script&quot;,
+    &quot;texture_group&quot;,
+    --&quot;type&quot; &lt;this field does not exist in 7.2&gt;
+}
+</code></pre>
+<p>Example select for db_skill:</p>
+<pre><code class="language-lua">-- Use DISCTINT keyword to avoid duplicates left by gala
+selectStatement = &quot;SELECT DISTINCT [id],[text_id],[is_valid],[elemental],[is_passive],[is_physical_act],[is_harmful],[is_need_target],[is_corpse],[is_toggle],[toggle_group],[casting_type],[casting_level],[cast_range],[valid_range],[cost_hp],[cost_hp_per_skl],[cost_mp],[cost_mp_per_skl],[cost_mp_per_enhance],[cost_hp_per],[cost_hp_per_skl_per],[cost_mp_per],[cost_mp_per_skl_per],[cost_havoc],[cost_havoc_per_skl],[cost_energy],[cost_energy_per_skl],[cost_exp],[cost_exp_per_enhance],[cost_jp],[cost_jp_per_enhance],[cost_item],[cost_item_count],[cost_item_count_per_skl],[need_level],[need_hp],[need_mp],[need_havoc],[need_havoc_burst],[need_state_id],[need_state_level],[need_state_exhaust],[vf_one_hand_sword],[vf_two_hand_sword],[vf_double_sword],[vf_dagger],[vf_double_dagger],[vf_spear],[vf_axe],[vf_one_hand_axe],[vf_double_axe],[vf_one_hand_mace],[vf_two_hand_mace],[vf_lightbow],[vf_heavybow],[vf_crossbow],[vf_one_hand_staff],[vf_two_hand_staff],[vf_shield_only],[vf_is_not_need_weapon],[delay_cast],[delay_cast_per_skl],[delay_cast_mode_per_enhance],[delay_common],[delay_cooltime],[delay_cooltime_mode_per_enhance],[cool_time_group_id],[uf_self],[uf_party],[uf_guild],[uf_neutral],[uf_purple],[uf_enemy],[tf_avatar],[tf_summon],[tf_monster],[skill_lvup_limit],[target],[effect_type],[state_id],[state_level_base],[state_level_per_skl],[state_level_per_enhance],[state_second],[state_second_per_level],[state_second_per_enhance],[state_type],[probability_on_hit],[probability_inc_by_slv],[hit_bonus],[hit_bonus_per_enhance],[percentage],[hate_mod],[hate_basic],[hate_per_skl],[hate_per_enhance],[critical_bonus],[critical_bonus_per_skl],[var1],[var2],[var3],[var4],[var5],[var6],[var7],[var8],[var9],[var10],[var11],[var12],[var13],[var14],[var15],[var16],[var17],[var18],[var19],[var20],[jp_01],[jp_02],[jp_03],[jp_04],[jp_05],[jp_06],[jp_07],[jp_08],[jp_09],[jp_10],[jp_11],[jp_12],[jp_13],[jp_14],[jp_15],[jp_16],[jp_17],[jp_18],[jp_19],[jp_20],[jp_21],[jp_22],[jp_23],[jp_24],[jp_25],[jp_26],[jp_27],[jp_28],[jp_29],[jp_30],[jp_31],[jp_32],[jp_33],[jp_34],[jp_35],[jp_36],[jp_37],[jp_38],[jp_39],[jp_40],[jp_41],[jp_42],[jp_43],[jp_44],[jp_45],[jp_46],[jp_47],[jp_48],[jp_49],[jp_50],[desc_id],[tooltip_id],[icon_id],[icon_file_name],[is_projectile],[projectile_speed],[projectile_acceleration] FROM dbo.SkillResource s LEFT JOIN dbo.SkillJpResource sj ON sj.skill_id = s.id&quot;
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
