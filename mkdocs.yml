@@ -1,0 +1,17 @@
+site_name: OpenRZ
+site_url: http://openrz.org
+site_description: Documentation, Guides and Releases
+
+docs_dir: ./docs/
+
+theme:
+  name: readthedocs
+  navigation_depth: 3
+
+nav:
+- Home: index.md
+- Documentation: documentation.md
+- Guides: guides.md
+- Releases: releases.md
+- Discord: https://discord.gg/6rxB56w5x5
+- Credits/Thanks: credits_thanks.md
